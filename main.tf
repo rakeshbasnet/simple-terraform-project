@@ -50,3 +50,17 @@ resource "aws_s3_object" "profile_pic" {
   source = "profile.jpeg"
   acl = "public-read"
 }
+
+resource "aws_s3_bucket_website_configuration" "my_portfolio" {
+  bucket = aws_s3_bucket.bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+
+  depends_on = [aws_s3_bucket_acl.bucket_acl]
+}
