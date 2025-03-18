@@ -27,3 +27,26 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
   bucket = aws_s3_bucket.bucket.id
   acl    = "public-read"
 }
+
+resource "aws_s3_object" "index_file" {
+  bucket = aws_s3_bucket.bucket.id
+  key    = "index.html"
+  source = "index.html"
+  acl = "public-read"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "error_file" {
+  bucket = aws_s3_bucket.bucket.id
+  key = "error.html"
+  source = "error.html"
+  acl = "public-read"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "profile_pic" {
+  bucket = aws_s3_bucket.bucket.id
+  key = "profile.jpeg"
+  source = "profile.jpeg"
+  acl = "public-read"
+}
